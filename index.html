@@ -3,25 +3,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>传统戏曲锣鼓经排练可视化</title>
+  <title>锣鼓经排练版本台</title>
   <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
   <main class="app">
     <header class="top">
       <div>
-        <p>Luogujing Rehearsal Grid</p>
-        <h1>传统戏曲锣鼓经排练可视化</h1>
+        <p>Luogujing Version Console</p>
+        <h1>锣鼓经排练版本台</h1>
       </div>
       <div class="transport">
         <button id="playBtn" type="button">播放</button>
-        <button id="stopBtn" type="button">停止</button>
-        <button id="saveBtn" type="button">保存方案</button>
+        <button id="stopBtn" type="button" class="ghost">停止</button>
+        <button id="lockBtn" type="button">锁定演出稿</button>
+        <button id="trialBtn" type="button" class="ghost">新增试排</button>
+        <button id="confirmBtn" type="button">确认试排</button>
+        <button id="discardBtn" type="button" class="ghost">放弃试排</button>
       </div>
     </header>
 
+    <div id="statusBanner" class="banner"></div>
+
     <section class="controls">
-      <label>剧目片段<input id="pieceName" placeholder="如：出场锣鼓-慢起"></label>
+      <label>剧目<input id="pieceName" placeholder="如：出场锣鼓-慢起"></label>
+      <label>板式
+        <select id="banshiSelect">
+          <option value="慢板">慢板</option>
+          <option value="原板">原板</option>
+          <option value="流水板">流水板</option>
+          <option value="快板">快板</option>
+          <option value="散板">散板</option>
+        </select>
+      </label>
       <label>速度BPM<input id="bpmInput" type="number" min="40" max="220" value="96"></label>
       <label>循环小节
         <select id="loopSelect">
@@ -37,7 +51,7 @@
 
     <section class="stage">
       <aside class="segments">
-        <h2>已存方案</h2>
+        <h2>已存方案（锁定稿）</h2>
         <div id="savedList"></div>
       </aside>
       <section class="score">
@@ -48,6 +62,8 @@
         <div id="structure"></div>
         <h2>批注</h2>
         <div id="notesList"></div>
+        <h2>留档记录</h2>
+        <div id="archiveList"></div>
       </aside>
     </section>
   </main>

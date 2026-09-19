@@ -77,12 +77,57 @@ button {
 
 .transport {
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
+}
+
+button.ghost {
+  border: 1px solid var(--accent);
+  background: transparent;
+  color: var(--accent);
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 14px;
+  border: 1px solid var(--line);
+  border-left: 6px solid var(--gold);
+  border-radius: 8px;
+  background: var(--panel);
+  padding: 10px 14px;
+  font-size: 14px;
+}
+
+.banner[data-state="locked"] {
+  border-left-color: var(--active);
+}
+
+.banner[data-state="pending"] {
+  border-left-color: var(--accent);
+}
+
+.banner span {
+  color: var(--muted);
+}
+
+.banner em {
+  width: 100%;
+  color: var(--accent);
+  font-style: normal;
+  font-weight: 700;
 }
 
 .controls {
   display: grid;
-  grid-template-columns: minmax(220px, 1fr) 120px 130px minmax(260px, 1fr);
+  grid-template-columns: minmax(180px, 1.2fr) 110px 110px 130px minmax(220px, 1fr);
   gap: 10px;
   margin-bottom: 14px;
   border: 1px solid var(--line);
@@ -181,6 +226,33 @@ select {
   outline: 3px solid var(--active);
   outline-offset: -3px;
   background: #d9efea;
+}
+
+.grid.readonly .cell {
+  cursor: not-allowed;
+  background: #f6f1e7;
+}
+
+.grid.readonly .cell.filled {
+  background: #f3e6c8;
+}
+
+.saved-item.current {
+  border-color: var(--active);
+  outline: 2px solid var(--active);
+  outline-offset: -2px;
+}
+
+.source-tag {
+  margin: 0 0 8px;
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.archive-item p {
+  color: var(--muted);
+  font-size: 13px;
 }
 
 .saved-item {

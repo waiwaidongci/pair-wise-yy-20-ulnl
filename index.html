@@ -3,25 +3,45 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>传统戏曲锣鼓经排练可视化</title>
+  <title>锣鼓经排练版本台</title>
   <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
   <main class="app">
     <header class="top">
       <div>
-        <p>Luogujing Rehearsal Grid</p>
-        <h1>传统戏曲锣鼓经排练可视化</h1>
+        <p>Luogujing Rehearsal Version Desk</p>
+        <h1>锣鼓经排练版本台</h1>
       </div>
       <div class="transport">
         <button id="playBtn" type="button">播放</button>
         <button id="stopBtn" type="button">停止</button>
-        <button id="saveBtn" type="button">保存方案</button>
       </div>
     </header>
 
+    <section class="identity">
+      <label>剧目
+        <input id="pieceInput" list="pieceList" placeholder="如：出场锣鼓" />
+        <datalist id="pieceList"></datalist>
+      </label>
+      <label>板式
+        <select id="modeSelect">
+          <option>慢板</option>
+          <option>原板</option>
+          <option>快板</option>
+          <option>流水</option>
+          <option>摇板</option>
+          <option>散板</option>
+        </select>
+      </label>
+      <button id="openSegmentBtn" class="ghost" type="button">打开 / 新建段落</button>
+      <div class="identity-status">
+        <span id="statusBadge" class="badge">—</span>
+        <span id="playSource" class="hint">播放来源：—</span>
+      </div>
+    </section>
+
     <section class="controls">
-      <label>剧目片段<input id="pieceName" placeholder="如：出场锣鼓-慢起"></label>
       <label>速度BPM<input id="bpmInput" type="number" min="40" max="220" value="96"></label>
       <label>循环小节
         <select id="loopSelect">
@@ -32,22 +52,33 @@
           <option value="3">第4小节</option>
         </select>
       </label>
-      <label>难点批注<input id="noteInput" placeholder="如：第2小节小锣晚半拍"></label>
+      <label>难点批注<input id="noteInput" placeholder="如：第2小节小锣晚半拍，回车提交"></label>
+      <div class="actions">
+        <button id="lockBtn" type="button">锁定为演出稿</button>
+        <button id="trialBtn" type="button" hidden>新增试排</button>
+        <button id="confirmBtn" type="button" hidden>确认替换</button>
+        <button id="discardBtn" class="ghost" type="button" hidden>放弃试排</button>
+      </div>
     </section>
+
+    <div id="message" class="message" hidden></div>
 
     <section class="stage">
       <aside class="segments">
-        <h2>已存方案</h2>
+        <h2>已存方案 <span class="sub">仅锁定演出稿</span></h2>
         <div id="savedList"></div>
       </aside>
       <section class="score">
+        <div id="viewBanner" class="view-banner"></div>
         <div id="grid" class="grid"></div>
       </section>
       <aside class="notes">
-        <h2>段落结构</h2>
+        <h2>段落统计 <span id="structureSource" class="sub"></span></h2>
         <div id="structure"></div>
-        <h2>批注</h2>
+        <h2>批注 <span id="notesSource" class="sub"></span></h2>
         <div id="notesList"></div>
+        <h2>留档</h2>
+        <div id="archiveList"></div>
       </aside>
     </section>
   </main>
